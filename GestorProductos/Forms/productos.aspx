@@ -77,10 +77,21 @@
                     <option value="Domina">Domina</option>
                 </select>
             </div>
+            
             <br />
+            <br />
+            <asp:Label ID="Label8" runat="server" Text=" "></asp:Label>
+            <br />
+            <br />
+            
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button CssClass="btn btn-success" OnClick="button_click1" Text="CREAR" runat="server" />
+            &nbsp;&nbsp;
             <asp:Button CssClass="btn btn-primary" OnClick="button_click2" Text="BUSCAR" runat="server" />
+            &nbsp;&nbsp;&nbsp;
             <asp:Button CssClass="btn btn-warning" OnClick="button_click3" Text="EDITAR" runat="server" />
+            &nbsp;&nbsp;&nbsp;
             <asp:Button CssClass="btn btn-danger" OnClick="button_click4" Text="ELIMINAR" runat="server" />
         </div>
     </form>
