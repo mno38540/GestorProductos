@@ -39,7 +39,7 @@ namespace GestorProductos.Forms
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText input1;
 
         /// <summary>
         /// Control label2.
@@ -93,7 +93,7 @@ namespace GestorProductos.Forms
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText input4;
 
         /// <summary>
         /// Control label5.
@@ -111,7 +111,7 @@ namespace GestorProductos.Forms
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input5;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText input5;
 
         /// <summary>
         /// Control label6.
@@ -132,6 +132,15 @@ namespace GestorProductos.Forms
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input6;
 
         /// <summary>
+        /// Control TextBox1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+
+        /// <summary>
         /// Control input7.
         /// </summary>
         /// <remarks>
@@ -148,5 +157,14 @@ namespace GestorProductos.Forms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label8;
+
+        /// <summary>
+        /// Control Label9.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
     }
 }
