@@ -28,11 +28,9 @@ namespace GestorProductos.Forms
             NewPro.costo = decimal.Parse(input4.Value);
             NewPro.precio = decimal.Parse(input5.Value) ;
             NewPro.proveedor =  input7.Value;
-            if (NewPro.precio >= NewPro.costo)
+            if (NewPro.precio <= NewPro.costo)
                 {
-
                   throw new Exception("El precio no puede ser menor al costo");
-
                 }
             if (NewPro.precio != 0 & NewPro.costo != 0)
             {
@@ -104,7 +102,6 @@ namespace GestorProductos.Forms
             {
                 Producto NewPro = db.Producto.Find(input1.Value);
                 if (NewPro != null)
-                    throw new Exception();
                 { 
                 
                 NewPro.nombre = input2.Value;
@@ -112,6 +109,10 @@ namespace GestorProductos.Forms
                 NewPro.costo = decimal.Parse(input4.Value);
                 NewPro.precio = decimal.Parse(input5.Value);
                 NewPro.proveedor = input7.Value;
+                if (NewPro.precio <= NewPro.costo)
+                {
+                        throw new Exception("El precio no puede ser menor al costo");
+                }
                 if (NewPro.precio != 0 & NewPro.costo != 0)
                 {
                     NewPro.margen = (decimal)(((NewPro.precio - NewPro.costo) / NewPro.precio) * 100);
@@ -123,7 +124,8 @@ namespace GestorProductos.Forms
                 {
                     NewPro.margen = 0;
                     TextBox1.Text = " ";
-                }
+                        throw new Exception("El precio o costo no puede ser = 0");
+                    }
                     db.Entry(NewPro).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                     Label9.Text = "Registro Actualizado con exito";
