@@ -22,12 +22,18 @@ namespace GestorProductos.Forms
             try
             {
             Producto NewPro = new Producto();
-            NewPro.codigo = input1.Value;
+            NewPro.codigo = input1.Value.ToUpper();
             NewPro.nombre = input2.Value;
             NewPro.descripcion = input3.Value ;
             NewPro.costo = decimal.Parse(input4.Value);
             NewPro.precio = decimal.Parse(input5.Value) ;
             NewPro.proveedor =  input7.Value;
+            if (NewPro.precio >= NewPro.costo)
+                {
+
+                  throw new Exception("El precio no puede ser menor al costo");
+
+                }
             if (NewPro.precio != 0 & NewPro.costo != 0)
             {
                 NewPro.margen = (decimal)(((NewPro.precio - NewPro.costo) / NewPro.precio) * 100);
@@ -39,11 +45,14 @@ namespace GestorProductos.Forms
             {
                 NewPro.margen = 0;
                 TextBox1.Text = " ";
-            }
+                modalEjecucion.Text = "<script type='text/javascript'>modalFallo();</script>";
+                Label10.Text = " El precio o el costo no pueden ser 0 ";
+                }
                 db.Producto.Add(NewPro);
                 db.SaveChanges();
                 Label9.Text = "Registro exitoso";
-                Label8.Text = "Registro exitoso";
+                modalEjecucion.Text = "<script type='text/javascript'>modalExito();</script>";
+               // Label8.Text = "Registro exitoso";
 
                 input1.Value = "";
                 input2.Value = "";
@@ -55,6 +64,7 @@ namespace GestorProductos.Forms
             }
             catch (Exception x)
             {
+                modalEjecucion.Text = "<script type='text/javascript'>modalFallo();</script>";
                 Label10.Text = x.Message;
             }
 
@@ -71,7 +81,8 @@ namespace GestorProductos.Forms
                 input5.Value = bus.precio.ToString();
                 TextBox1.Text = bus.margen.ToString();
                 input7.Value = bus.proveedor;
-                Label8.Text = " Registro Encontrado con Exito!!";
+                Label9.Text = "Registro encontrado ";
+                modalEjecucion.Text = "<script type='text/javascript'>modalExito();</script>";
             }
             else 
             {
@@ -82,7 +93,8 @@ namespace GestorProductos.Forms
                 input5.Value = "";
                 TextBox1.Text = "";
                 input7.Value = "";
-                Label8.Text = " Registro no encontrado valide el codigo";
+                modalEjecucion.Text = "<script type='text/javascript'>modalFallo();</script>";
+                Label10.Text = " Registro no encontrado valide el codigo";
             }
         }
 
@@ -90,10 +102,11 @@ namespace GestorProductos.Forms
         {
             try
             {
-                Producto NewPro = new Producto();
-                if (NewPro != null) 
+                Producto NewPro = db.Producto.Find(input1.Value);
+                if (NewPro != null)
+                    throw new Exception();
                 { 
-                NewPro.codigo = input1.Value;
+                
                 NewPro.nombre = input2.Value;
                 NewPro.descripcion = input3.Value;
                 NewPro.costo = decimal.Parse(input4.Value);
@@ -113,7 +126,8 @@ namespace GestorProductos.Forms
                 }
                     db.Entry(NewPro).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                Label8.Text = "Registro Actualizado con exito";
+                    Label9.Text = "Registro Actualizado con exito";
+                    modalEjecucion.Text = "<script type='text/javascript'>modalExito();</script>";
 
                 input1.Value = "";
                 input2.Value = "";
@@ -126,7 +140,8 @@ namespace GestorProductos.Forms
             }
             catch (Exception x)
             {
-                Label8.Text = x.Message;
+                modalEjecucion.Text = "<script type='text/javascript'>modalFallo();</script>";
+                Label10.Text = x.Message;
             }
         }
         protected void button_click4(object sender, EventArgs e)
@@ -137,7 +152,8 @@ namespace GestorProductos.Forms
             {
                 db.Producto.Remove(pro);
                 db.SaveChanges();
-                Label8.Text = "Producto eliminado con exito";
+                modalEjecucion.Text = "<script type='text/javascript'>modalExito();</script>";
+                Label9.Text = "Producto eliminado con exito";
 
                 input1.Value = "";
                 input2.Value = "";
@@ -149,6 +165,7 @@ namespace GestorProductos.Forms
             }
             else
             {
+                modalEjecucion.Text = "<script type='text/javascript'>modalFallo();</script>";
                 Label8.Text = "no se pudo eliminar";
             }
         }
