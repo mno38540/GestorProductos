@@ -14,6 +14,8 @@ namespace GestorProductos.Forms
         ShopEntities db = new ShopEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
+            GridView1.DataSource = db.Producto.ToList();
+            GridView1.DataBind();
         }
         protected void button_click1(object sender, EventArgs e)
         {
@@ -41,6 +43,7 @@ namespace GestorProductos.Forms
                 db.Producto.Add(NewPro);
                 db.SaveChanges();
                 Label9.Text = "Registro exitoso";
+                Label8.Text = "Registro exitoso";
 
                 input1.Value = "";
                 input2.Value = "";
@@ -52,7 +55,7 @@ namespace GestorProductos.Forms
             }
             catch (Exception x)
             {
-                Label8.Text = x.Message;
+                Label10.Text = x.Message;
             }
 
         }
@@ -148,6 +151,11 @@ namespace GestorProductos.Forms
             {
                 Label8.Text = "no se pudo eliminar";
             }
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
