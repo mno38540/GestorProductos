@@ -22,6 +22,26 @@ namespace GestorProductos.Forms
             try
             {
             Producto NewPro = new Producto();
+                if(string.IsNullOrWhiteSpace(input1.Value))
+                {
+                    throw new Exception("El codigo debe ser diligenciado como alfa numerico");
+                }
+                if (string.IsNullOrWhiteSpace(input2.Value))
+                {
+                    throw new Exception("El Nombre no puede estar en blanco");
+                }
+                if (!decimal.TryParse(input4.Value , out decimal costo) || costo == 0 )
+                {
+                    throw new Exception("El Costo no puede ser letras o cero");
+                }
+                if (!decimal.TryParse(input5.Value, out decimal precio) || costo == 0)
+                {
+                    throw new Exception("El precio no puede ser letras o cero ");
+                }
+                if (string.IsNullOrWhiteSpace(input7.Value) || input7.Value == "--Selecciona una Opcion--")
+                {
+                    throw new Exception("El Proveedor debe ser valido ");
+                }
             NewPro.codigo = input1.Value.ToUpper();
             NewPro.nombre = input2.Value;
             NewPro.descripcion = input3.Value ;
@@ -102,8 +122,23 @@ namespace GestorProductos.Forms
             {
                 Producto NewPro = db.Producto.Find(input1.Value);
                 if (NewPro != null)
-                { 
-                
+                {
+                    if (string.IsNullOrWhiteSpace(input2.Value))
+                    {
+                        throw new Exception("El Nombre no puede estar en blanco");
+                    }
+                    if (!decimal.TryParse(input4.Value, out decimal costo) || costo == 0)
+                    {
+                        throw new Exception("El Costo no puede ser letras o cero");
+                    }
+                    if (!decimal.TryParse(input5.Value, out decimal precio) || costo == 0)
+                    {
+                        throw new Exception("El precio no puede ser letras o cero ");
+                    }
+                    if (string.IsNullOrWhiteSpace(input7.Value) || input7.Value == "--Selecciona una Opcion--")
+                    {
+                        throw new Exception("El Proveedor debe ser valido ");
+                    }
                 NewPro.nombre = input2.Value;
                 NewPro.descripcion = input3.Value;
                 NewPro.costo = decimal.Parse(input4.Value);
