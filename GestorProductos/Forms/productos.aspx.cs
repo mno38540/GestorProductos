@@ -48,29 +48,19 @@ namespace GestorProductos.Forms
                 {
                     throw new Exception("El precio no puede ser menor al costo");
                 }
-                if (NewPro.precio != 0 & NewPro.costo != 0)
-                {
-                NewPro.margen = (decimal)(((NewPro.precio - NewPro.costo) / NewPro.precio) * 100);
-                decimal m = Math.Round((decimal) NewPro.margen, 2);
-                TextBox1.Text = m.ToString() + " %";
-
-                }
-                else
-                {
-                NewPro.margen = 0;
-                TextBox1.Text = " ";
-                modalEjecucion.Text = "<script type='text/javascript'>modalFallo();</script>";
-                Label10.Text = " El precio o el costo no pueden ser 0 ";
-                }
                 if (string.IsNullOrWhiteSpace(input7.Value) || input7.Value == "--Selecciona una Opcion--")
                 {
                     throw new Exception("El Proveedor debe ser valido ");
                 }
+                NewPro.margen = (decimal)(((NewPro.precio - NewPro.costo) / NewPro.precio) * 100);
+                decimal m = Math.Round((decimal) NewPro.margen, 2);
+                TextBox1.Text = m.ToString() + " %";
+
                 db.Producto.Add(NewPro);
                 db.SaveChanges();
                 Label9.Text = "Registro exitoso";
                 modalEjecucion.Text = "<script type='text/javascript'>modalExito();</script>";
-               // Label8.Text = "Registro exitoso";
+
 
                 input1.Value = "";
                 input2.Value = "";
@@ -148,18 +138,9 @@ namespace GestorProductos.Forms
                 {
                         throw new Exception("El precio no puede ser menor al costo");
                 }
-                if (NewPro.precio != 0 & NewPro.costo != 0)
-                {
                     NewPro.margen = (decimal)(((NewPro.precio - NewPro.costo) / NewPro.precio) * 100);
                     decimal m = Math.Round((decimal)NewPro.margen, 2);
-                    
-
-                }
-                else
-                {
-                    throw new Exception("El precio o costo no puede ser = 0");
-                 }
-                    db.Entry(NewPro).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(NewPro).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                     Label9.Text = "Registro Actualizado con exito";
                     modalEjecucion.Text = "<script type='text/javascript'>modalExito();</script>";

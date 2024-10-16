@@ -175,7 +175,7 @@
             }
         </script>
 
-        <asp:Literal ID="modalEjecucion" runat="server"> </asp:Literal>
+        
 
             &nbsp;&nbsp;
             <asp:Button CssClass="btn btn-primary" OnClick="button_click2" Text="BUSCAR" runat="server" />
@@ -231,7 +231,7 @@
             </div>
             <br />
         </div>
-        
+        <asp:Literal ID="modalEjecucion" runat="server"> </asp:Literal>
     </form>
 </body>
 </html>
