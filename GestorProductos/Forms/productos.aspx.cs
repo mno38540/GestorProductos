@@ -22,13 +22,13 @@ namespace GestorProductos.Forms
             try
             {
             Producto NewPro = new Producto();
-            NewPro.codigo = input1.Value.ToUpper();
-            NewPro.nombre = input2.Value;
-            NewPro.descripcion = input3.Value ;
-            NewPro.costo = decimal.Parse(input4.Value);
-            NewPro.precio = decimal.Parse(input5.Value) ;
-            NewPro.proveedor =  input7.Value;
-                if(string.IsNullOrWhiteSpace(input1.Value))
+                NewPro.codigo = input1.Value.ToUpper();
+                NewPro = db.Producto.Find(input1.Value);
+                if (NewPro != null) 
+                {
+                    throw new Exception(" El Codigo ya existe ");
+                }
+                if (string.IsNullOrWhiteSpace(input1.Value))
                 {
                     throw new Exception("El codigo debe ser diligenciado como alfa numerico");
                 }
@@ -44,6 +44,8 @@ namespace GestorProductos.Forms
                 {
                     throw new Exception("El precio no puede ser letras o cero ");
                 }
+                NewPro.costo = decimal.Parse(input4.Value);
+                NewPro.precio = decimal.Parse(input5.Value);
                 if (NewPro.precio <= NewPro.costo)
                 {
                     throw new Exception("El precio no puede ser menor al costo");
@@ -52,6 +54,9 @@ namespace GestorProductos.Forms
                 {
                     throw new Exception("El Proveedor debe ser valido ");
                 }
+                NewPro.nombre = input2.Value;
+                NewPro.descripcion = input3.Value;
+                NewPro.proveedor = input7.Value;
                 NewPro.margen = (decimal)(((NewPro.precio - NewPro.costo) / NewPro.precio) * 100);
                 decimal m = Math.Round((decimal) NewPro.margen, 2);
                 TextBox1.Text = m.ToString() + " %";
@@ -113,6 +118,7 @@ namespace GestorProductos.Forms
                 Producto NewPro = db.Producto.Find(input1.Value);
                 if (NewPro != null)
                 {
+                    
                     if (string.IsNullOrWhiteSpace(input2.Value))
                     {
                         throw new Exception("El Nombre no puede estar en blanco");
@@ -125,19 +131,20 @@ namespace GestorProductos.Forms
                     {
                         throw new Exception("El precio no puede ser letras o cero ");
                     }
+                    NewPro.costo = decimal.Parse(input4.Value);
+                    NewPro.precio = decimal.Parse(input5.Value);
+                    if (NewPro.precio <= NewPro.costo)
+                    {
+                        throw new Exception("El precio no puede ser menor al costo");
+                    }
                     if (string.IsNullOrWhiteSpace(input7.Value) || input7.Value == "--Selecciona una Opcion--")
                     {
                         throw new Exception("El Proveedor debe ser valido ");
                     }
                 NewPro.nombre = input2.Value;
                 NewPro.descripcion = input3.Value;
-                NewPro.costo = decimal.Parse(input4.Value);
-                NewPro.precio = decimal.Parse(input5.Value);
                 NewPro.proveedor = input7.Value;
-                if (NewPro.precio <= NewPro.costo)
-                {
-                        throw new Exception("El precio no puede ser menor al costo");
-                }
+                
                     NewPro.margen = (decimal)(((NewPro.precio - NewPro.costo) / NewPro.precio) * 100);
                     decimal m = Math.Round((decimal)NewPro.margen, 2);
                 db.Entry(NewPro).State = System.Data.Entity.EntityState.Modified;
