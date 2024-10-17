@@ -22,9 +22,9 @@ namespace GestorProductos.Forms
             try
             {
             Producto NewPro = new Producto();
-                NewPro.codigo = input1.Value.ToUpper();
-                NewPro = db.Producto.Find(input1.Value);
-                if (NewPro != null) 
+                
+                Producto n = db.Producto.Find(input1.Value);
+                if (n != null) 
                 {
                     throw new Exception(" El Codigo ya existe ");
                 }
@@ -54,6 +54,7 @@ namespace GestorProductos.Forms
                 {
                     throw new Exception("El Proveedor debe ser valido ");
                 }
+                NewPro.codigo = input1.Value.ToUpper();
                 NewPro.nombre = input2.Value;
                 NewPro.descripcion = input3.Value;
                 NewPro.proveedor = input7.Value;
